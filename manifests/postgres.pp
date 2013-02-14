@@ -4,7 +4,7 @@ class ruby::postgres {
   # install the ruby drivers
   package{'rubygem-pg':
     ensure => installed,
-    name   => lsbmajdistrelease ? {
+    alias  => lsbmajdistrelease ? {
       '5'     => 'ruby-postgres',
       default => 'rubygem-pg',
     },
