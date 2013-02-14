@@ -1,13 +1,11 @@
+# Ruby bindings for PostgreSQL
+#
 class ruby::postgres {
   include ruby
 
-  # install the ruby drivers
-  package{'rubygem-pg':
-    ensure => installed,
-    alias  => lsbmajdistrelease ? {
-      '5'     => 'ruby-postgres',
-      default => 'rubygem-pg',
-    },
+  case $lsbmajdistrelease {
+    5:       { package{'ruby-postgres': ensure => installed } }
+    default: { package{'rubygem-pg':    ensure => installed } }
   }
 
 }
